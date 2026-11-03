@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -920,6 +920,1612 @@
         btn.addEventListener("click", open);
         env.addEventListener("click", open);
       })();
+    </script>
+  </body>
+</html> -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CAC Itedo Yiyanju | Historic 3-in-1 Celebration</title>
+    <meta
+      name="description"
+      content="You are specially invited to the historic 3-in-1 Celebration Service of CAC Itedo Yiyanju District Headquarters on Sunday, 22nd November 2026."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --ivory: #fbf8f1;
+        --cream: #f2ebdf;
+        --paper: #fffdf8;
+        --green: #17332b;
+        --green-light: #23473b;
+        --gold: #b59658;
+        --gold-light: #d9c69c;
+        --ink: #26312c;
+        --muted: #746f64;
+        --serif: "Cormorant Garamond", Georgia, serif;
+        --script: "Great Vibes", cursive;
+        --sans: "Manrope", Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #e7e0d4;
+        color: var(--ink);
+        font-family: var(--sans);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+
+      ::selection {
+        background: var(--gold-light);
+        color: var(--green);
+      }
+      a {
+        color: inherit;
+      }
+
+      .page {
+        max-width: 1440px;
+        margin: 0 auto;
+        overflow: hidden;
+        background: var(--ivory);
+        box-shadow: 0 0 70px rgba(36, 31, 22, 0.12);
+      }
+
+      /* =====================================================
+       ENVELOPE COVER — the full-screen "closed envelope"
+       ===================================================== */
+      .envelope-cover {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(
+          ellipse at 50% 38%,
+          rgba(255, 253, 248, 0.97) 0%,
+          rgba(242, 235, 223, 0.98) 100%
+        );
+        transition:
+          opacity 0.6s ease,
+          visibility 0.6s ease;
+      }
+
+      .envelope-cover.opened {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .envelope {
+        position: relative;
+        width: min(420px, 88vw);
+        aspect-ratio: 1 / 0.7;
+        perspective: 1200px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Envelope body */
+      .envelope-body {
+        position: absolute;
+        inset: 0;
+        border-radius: 6px;
+        background: linear-gradient(165deg, #f5eedf 0%, #ebe3d2 100%);
+        box-shadow:
+          0 18px 50px rgba(58, 47, 29, 0.18),
+          inset 0 0 0 1px rgba(181, 150, 88, 0.25);
+        overflow: hidden;
+      }
+
+      /* Bottom triangular flap (decorative) */
+      .envelope-body::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 55%;
+        background: linear-gradient(
+          to top,
+          rgba(181, 150, 88, 0.06),
+          transparent
+        );
+        clip-path: polygon(0 100%, 50% 20%, 100% 100%);
+      }
+
+      /* Side shadow lines */
+      .envelope-body::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            to bottom right,
+            transparent 49.5%,
+            rgba(181, 150, 88, 0.08) 49.5%,
+            rgba(181, 150, 88, 0.08) 50.5%,
+            transparent 50.5%
+          ),
+          linear-gradient(
+            to bottom left,
+            transparent 49.5%,
+            rgba(181, 150, 88, 0.08) 49.5%,
+            rgba(181, 150, 88, 0.08) 50.5%,
+            transparent 50.5%
+          );
+        pointer-events: none;
+      }
+
+      /* Top flap */
+      .envelope-flap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 55%;
+        transform-origin: top center;
+        transform: rotateX(0deg);
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 3;
+      }
+
+      .envelope-flap-inner {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, #ebe3d2 0%, #e4dccb 100%);
+        clip-path: polygon(0 0, 50% 100%, 100% 0);
+        box-shadow: 0 2px 12px rgba(58, 47, 29, 0.07);
+        border-radius: 6px 6px 0 0;
+      }
+
+      .envelope-flap-inner::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 60%,
+          rgba(0, 0, 0, 0.04) 100%
+        );
+        clip-path: polygon(0 0, 50% 100%, 100% 0);
+      }
+
+      .envelope.flap-open .envelope-flap {
+        transform: rotateX(-180deg);
+      }
+
+      /* Letter peeking out of the envelope */
+      .envelope-letter {
+        position: absolute;
+        left: 8%;
+        right: 8%;
+        bottom: 8%;
+        top: 18%;
+        border-radius: 4px;
+        background: #fffdf8;
+        box-shadow: 0 2px 15px rgba(58, 47, 29, 0.08);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 25px 20px;
+        z-index: 1;
+        transform: translateY(0);
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
+      }
+
+      .envelope-letter::before {
+        content: "";
+        position: absolute;
+        inset: 6px;
+        border: 1px solid rgba(181, 150, 88, 0.22);
+        border-radius: 2px;
+        pointer-events: none;
+      }
+
+      .envelope.flap-open .envelope-letter {
+        transform: translateY(-65%);
+      }
+
+      .letter-cac {
+        color: var(--green);
+        font-family: var(--serif);
+        font-size: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        line-height: 1;
+      }
+
+      .letter-church {
+        margin-top: 6px;
+        color: var(--green);
+        font-family: var(--serif);
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+      }
+
+      .letter-line {
+        width: 50px;
+        height: 1px;
+        margin: 14px auto;
+        background: var(--gold);
+        opacity: 0.6;
+      }
+
+      .letter-you {
+        color: var(--muted);
+        font-size: 0.55rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .letter-guest {
+        margin-top: 2px;
+        color: var(--green);
+        font-family: var(--script);
+        font-size: 1.8rem;
+        line-height: 1.3;
+      }
+
+      .letter-invited {
+        margin-top: 10px;
+        color: var(--gold);
+        font-size: 0.52rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      /* Wax seal button */
+      .wax-seal {
+        position: absolute;
+        bottom: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background: radial-gradient(
+          circle at 35% 35%,
+          #c4793a 0%,
+          #9e3b2b 45%,
+          #7a2e22 100%
+        );
+        box-shadow:
+          0 4px 18px rgba(120, 40, 25, 0.45),
+          inset 0 2px 4px rgba(255, 255, 255, 0.15),
+          inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+        display: grid;
+        place-content: center;
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .wax-seal:hover {
+        transform: translateX(-50%) scale(1.08);
+        box-shadow:
+          0 6px 25px rgba(120, 40, 25, 0.55),
+          inset 0 2px 4px rgba(255, 255, 255, 0.15),
+          inset 0 -2px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .wax-seal:active {
+        transform: translateX(-50%) scale(0.96);
+      }
+
+      .wax-seal::before {
+        content: "";
+        position: absolute;
+        inset: 5px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 220, 180, 0.3);
+      }
+
+      .wax-seal-text {
+        color: rgba(255, 230, 200, 0.9);
+        font-family: var(--serif);
+        font-size: 0.95rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        line-height: 1;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+      }
+
+      .envelope.flap-open .wax-seal {
+        animation: sealBreak 0.4s ease forwards;
+      }
+
+      @keyframes sealBreak {
+        0% {
+          opacity: 1;
+          transform: translateX(-50%) scale(1);
+        }
+        50% {
+          opacity: 0.6;
+          transform: translateX(-50%) scale(1.3);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(-50%) scale(0.5);
+        }
+      }
+
+      /* Envelope label text */
+      .envelope-label {
+        position: absolute;
+        bottom: -55px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        transition: opacity 0.4s ease;
+      }
+
+      .envelope-label .tap-text {
+        display: block;
+        margin-top: 6px;
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: 0.85rem;
+        font-style: italic;
+        letter-spacing: 0.06em;
+        text-transform: none;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      .envelope.flap-open .envelope-label {
+        opacity: 0;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* Shimmer particles on open */
+      .particles {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold);
+        opacity: 0;
+      }
+
+      /* ============ HERO ============ */
+      .hero {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        padding: 70px 30px;
+        isolation: isolate;
+        text-align: center;
+        background:
+          radial-gradient(
+            circle at 50% 35%,
+            rgba(255, 255, 255, 0.95),
+            transparent 48%
+          ),
+          linear-gradient(135deg, #f7f1e6 0%, #fffdf8 48%, #f3ecdf 100%);
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 22px;
+        z-index: -1;
+        border: 1px solid rgba(181, 150, 88, 0.55);
+        pointer-events: none;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 29px;
+        z-index: -1;
+        border: 1px solid rgba(181, 150, 88, 0.16);
+        pointer-events: none;
+      }
+
+      .branch {
+        position: absolute;
+        width: clamp(160px, 22vw, 310px);
+        color: var(--gold);
+        opacity: 0.23;
+        pointer-events: none;
+      }
+
+      .branch-left {
+        left: -25px;
+        bottom: -25px;
+      }
+      .branch-right {
+        top: -25px;
+        right: -25px;
+        transform: rotate(180deg);
+      }
+
+      .hero-inner {
+        width: min(850px, 100%);
+        position: relative;
+        z-index: 2;
+      }
+
+      .seal-badge {
+        width: 88px;
+        height: 88px;
+        margin: 0 auto 25px;
+        display: grid;
+        place-content: center;
+        position: relative;
+        border: 1px solid var(--gold);
+        border-radius: 50%;
+        color: var(--green);
+        background: rgba(255, 253, 248, 0.8);
+      }
+
+      .seal-badge::before {
+        content: "";
+        position: absolute;
+        inset: 6px;
+        border: 1px solid rgba(181, 150, 88, 0.45);
+        border-radius: inherit;
+      }
+
+      .seal-badge span {
+        font-family: var(--serif);
+        font-size: 1.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        line-height: 1;
+        padding-left: 0.12em;
+      }
+
+      .seal-badge small {
+        margin-top: 6px;
+        color: var(--gold);
+        font-size: 0.65rem;
+        line-height: 1;
+      }
+
+      .church-name {
+        color: var(--green);
+        font-family: var(--serif);
+        font-size: clamp(1.35rem, 2.3vw, 1.8rem);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        line-height: 1.25;
+      }
+
+      .district {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      .gold-rule {
+        margin: 28px auto 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        color: var(--gold);
+        font-size: 0.65rem;
+      }
+
+      .gold-rule span {
+        width: 65px;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--gold));
+      }
+
+      .gold-rule span:last-child {
+        background: linear-gradient(to left, transparent, var(--gold));
+      }
+
+      .kicker,
+      .eyebrow {
+        color: var(--gold);
+        font-size: 0.67rem;
+        font-weight: 600;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 15px 0 22px;
+        color: var(--green);
+        font-family: var(--serif);
+        font-weight: 400;
+        line-height: 0.95;
+      }
+
+      .title-small {
+        display: block;
+        font-size: clamp(1.55rem, 3vw, 2.25rem);
+        font-style: italic;
+        letter-spacing: 0.06em;
+      }
+
+      .title-script {
+        display: block;
+        margin: 5px 0 -5px;
+        color: var(--gold);
+        font-family: var(--script);
+        font-size: clamp(5rem, 11vw, 8.5rem);
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .title-main {
+        display: block;
+        font-size: clamp(2.3rem, 5.5vw, 4.8rem);
+        letter-spacing: 0.02em;
+      }
+
+      .intro {
+        max-width: 570px;
+        margin: 0 auto;
+        color: var(--muted);
+        font-family: var(--serif);
+        font-size: clamp(1.1rem, 2vw, 1.3rem);
+      }
+
+      .guest {
+        margin: 30px auto 26px;
+      }
+
+      .guest span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.6rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+      }
+
+      .guest strong {
+        display: block;
+        margin-top: 2px;
+        color: var(--green);
+        font-family: var(--script);
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 400;
+        line-height: 1.25;
+        overflow-wrap: anywhere;
+      }
+
+      .hero-date {
+        display: inline-block;
+        padding: 11px 24px;
+        border-top: 1px solid rgba(181, 150, 88, 0.45);
+        border-bottom: 1px solid rgba(181, 150, 88, 0.45);
+        color: var(--green);
+        font-family: var(--serif);
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+
+      .hero-date i {
+        margin: 0 8px;
+        color: var(--gold);
+        font-style: normal;
+      }
+
+      .scroll-link {
+        width: max-content;
+        margin: 35px auto 0;
+        display: block;
+        color: var(--muted);
+        font-size: 0.59rem;
+        letter-spacing: 0.2em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .scroll-link span {
+        display: block;
+        margin-top: 7px;
+        color: var(--gold);
+        font-size: 1rem;
+      }
+
+      /* Theme banner */
+      .theme-banner {
+        position: relative;
+        padding: 55px 25px;
+        overflow: hidden;
+        text-align: center;
+        color: var(--ivory);
+        background:
+          radial-gradient(
+            circle at 50% 0%,
+            rgba(181, 150, 88, 0.17),
+            transparent 55%
+          ),
+          var(--green);
+      }
+
+      .theme-banner::before,
+      .theme-banner::after {
+        content: "✦";
+        position: absolute;
+        top: 50%;
+        color: var(--gold);
+        opacity: 0.55;
+        transform: translateY(-50%);
+      }
+
+      .theme-banner::before {
+        left: 8%;
+      }
+      .theme-banner::after {
+        right: 8%;
+      }
+
+      .theme-banner .eyebrow {
+        color: var(--gold-light);
+      }
+
+      .theme-banner h2 {
+        margin-top: 8px;
+        font-family: var(--serif);
+        font-size: clamp(2rem, 5vw, 3.7rem);
+        font-style: italic;
+        font-weight: 400;
+        line-height: 1.15;
+      }
+
+      /* Shared sections */
+      .section {
+        padding: clamp(75px, 10vw, 125px) 30px;
+      }
+
+      .section-heading {
+        max-width: 680px;
+        margin: 0 auto 60px;
+        text-align: center;
+      }
+
+      .section-heading h2 {
+        margin: 12px 0 14px;
+        color: var(--green);
+        font-family: var(--serif);
+        font-size: clamp(2.4rem, 5vw, 4rem);
+        font-weight: 400;
+        line-height: 1.08;
+      }
+
+      .section-heading p:last-child {
+        color: var(--muted);
+        font-family: var(--serif);
+        font-size: 1.15rem;
+      }
+
+      /* Three celebrations */
+      .celebrations {
+        background: var(--paper);
+      }
+
+      .programme {
+        max-width: 900px;
+        margin: 0 auto;
+        border-top: 1px solid rgba(181, 150, 88, 0.35);
+      }
+
+      .programme-item {
+        display: grid;
+        grid-template-columns: 85px 1fr;
+        gap: 25px;
+        align-items: center;
+        padding: 35px 15px;
+        border-bottom: 1px solid rgba(181, 150, 88, 0.35);
+      }
+
+      .programme-number {
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: 2.7rem;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 1;
+        text-align: center;
+      }
+
+      .programme-item h3 {
+        color: var(--green);
+        font-family: var(--serif);
+        font-size: clamp(1.55rem, 3vw, 2rem);
+        font-weight: 500;
+        line-height: 1.2;
+      }
+
+      .programme-item p {
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        letter-spacing: 0.035em;
+      }
+
+      /* Details */
+      .details {
+        background:
+          linear-gradient(rgba(242, 235, 223, 0.93), rgba(242, 235, 223, 0.93)),
+          repeating-linear-gradient(
+            45deg,
+            transparent 0 8px,
+            rgba(181, 150, 88, 0.08) 8px 9px
+          );
+      }
+
+      .details-grid {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .detail-card {
+        min-height: 320px;
+        padding: 45px 35px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(181, 150, 88, 0.4);
+        text-align: center;
+        background: rgba(255, 253, 248, 0.75);
+        box-shadow: 0 15px 45px rgba(58, 47, 29, 0.04);
+      }
+
+      .detail-icon {
+        margin-bottom: 17px;
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: 1.6rem;
+      }
+
+      .detail-card h3 {
+        color: var(--green);
+        font-family: var(--serif);
+        font-size: 2rem;
+        font-weight: 500;
+        line-height: 1.2;
+      }
+
+      .detail-card .large-date {
+        margin: 8px 0;
+        color: var(--gold);
+        font-family: var(--serif);
+        font-size: 4.7rem;
+        line-height: 1;
+      }
+
+      .detail-card p {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .detail-card .time {
+        margin-top: 15px;
+        color: var(--green);
+        font-family: var(--serif);
+        font-size: 1.45rem;
+        font-weight: 600;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        min-height: 50px;
+        margin-top: 25px;
+        padding: 13px 25px;
+        border: 1px solid var(--gold);
+        color: var(--green);
+        background: transparent;
+        font-family: var(--sans);
+        font-size: 0.63rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-decoration: none;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          background 0.25s ease,
+          color 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .button:hover {
+        color: var(--ivory);
+        background: var(--green);
+        transform: translateY(-2px);
+      }
+
+      .button:focus-visible,
+      .scroll-link:focus-visible {
+        outline: 2px solid var(--gold);
+        outline-offset: 5px;
+      }
+
+      /* Countdown */
+      .countdown-section {
+        padding: clamp(70px, 9vw, 105px) 25px;
+        text-align: center;
+        color: var(--ivory);
+        background:
+          radial-gradient(
+            circle at 50% 120%,
+            rgba(181, 150, 88, 0.2),
+            transparent 55%
+          ),
+          var(--green);
+      }
+
+      .countdown-section h2 {
+        margin: 10px 0 38px;
+        font-family: var(--serif);
+        font-size: clamp(2.2rem, 5vw, 3.7rem);
+        font-style: italic;
+        font-weight: 400;
+      }
+
+      .countdown {
+        max-width: 750px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .countdown-unit {
+        padding: 10px 25px;
+        border-right: 1px solid rgba(217, 198, 156, 0.28);
+      }
+
+      .countdown-unit:last-child {
+        border-right: 0;
+      }
+
+      .countdown-unit strong {
+        display: block;
+        color: var(--gold-light);
+        font-family: var(--serif);
+        font-size: clamp(2.7rem, 7vw, 5rem);
+        font-weight: 400;
+        font-variant-numeric: tabular-nums;
+        line-height: 1;
+      }
+
+      .countdown-unit span {
+        display: block;
+        margin-top: 12px;
+        color: rgba(251, 248, 241, 0.72);
+        font-size: 0.57rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .countdown-note {
+        margin-top: 35px;
+        color: rgba(251, 248, 241, 0.68);
+        font-family: var(--serif);
+        font-size: 1.05rem;
+      }
+
+      /* Closing invitation */
+      .closing {
+        position: relative;
+        padding: clamp(80px, 11vw, 135px) 30px;
+        text-align: center;
+        background: var(--paper);
+      }
+
+      .closing-inner {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .closing-flourish {
+        color: var(--gold);
+        font-family: var(--script);
+        font-size: 3.5rem;
+        line-height: 1;
+      }
+
+      .closing h2 {
+        margin: 15px 0;
+        color: var(--green);
+        font-family: var(--serif);
+        font-size: clamp(2.5rem, 5vw, 4.2rem);
+        font-weight: 400;
+        line-height: 1.08;
+      }
+
+      .closing h2 span {
+        color: var(--gold);
+        font-family: var(--script);
+        font-weight: 400;
+      }
+
+      .closing p {
+        max-width: 520px;
+        margin: 0 auto;
+        color: var(--muted);
+        font-family: var(--serif);
+        font-size: 1.2rem;
+      }
+
+      .closing .button {
+        color: var(--ivory);
+        background: var(--green);
+      }
+
+      .closing .button:hover {
+        background: var(--green-light);
+      }
+
+      .rsvp-note {
+        display: block;
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 0.58rem;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      footer {
+        padding: 30px 20px;
+        border-top: 1px solid rgba(181, 150, 88, 0.25);
+        text-align: center;
+        color: var(--muted);
+        background: var(--paper);
+        font-size: 0.58rem;
+        letter-spacing: 0.17em;
+        text-transform: uppercase;
+      }
+
+      footer strong {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--green);
+        font-family: var(--serif);
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+
+      /* ====== Body locked while envelope is showing ====== */
+      body.locked {
+        overflow: hidden;
+      }
+
+      /* ====== Content reveal animation ====== */
+      .page {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.9s ease 0.2s,
+          transform 0.9s ease 0.2s;
+      }
+
+      .page.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ====== Responsive ====== */
+      @media (max-width: 680px) {
+        .hero {
+          padding: 65px 27px;
+        }
+        .hero::before {
+          inset: 11px;
+        }
+        .hero::after {
+          inset: 17px;
+        }
+
+        .branch {
+          width: 150px;
+          opacity: 0.15;
+        }
+
+        .district {
+          max-width: 270px;
+          margin-inline: auto;
+          line-height: 1.8;
+        }
+
+        .title-script {
+          margin-bottom: 0;
+        }
+        .hero-date {
+          padding-inline: 8px;
+        }
+        .hero-date i {
+          margin-inline: 4px;
+        }
+
+        .theme-banner::before,
+        .theme-banner::after {
+          display: none;
+        }
+
+        .section {
+          padding-inline: 22px;
+        }
+        .section-heading {
+          margin-bottom: 38px;
+        }
+
+        .programme-item {
+          grid-template-columns: 45px 1fr;
+          gap: 15px;
+          padding: 27px 0;
+        }
+
+        .programme-number {
+          font-size: 2rem;
+        }
+
+        .details-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .detail-card {
+          min-height: 290px;
+          padding: 38px 24px;
+        }
+
+        .countdown-unit {
+          padding: 8px 6px;
+        }
+        .countdown-unit strong {
+          font-size: clamp(2.25rem, 12vw, 3.4rem);
+        }
+        .countdown-unit span {
+          font-size: 0.48rem;
+          letter-spacing: 0.12em;
+        }
+
+        .envelope {
+          width: min(340px, 85vw);
+        }
+
+        .wax-seal {
+          width: 60px;
+          height: 60px;
+          bottom: -14px;
+        }
+
+        .wax-seal-text {
+          font-size: 0.8rem;
+        }
+
+        .letter-cac {
+          font-size: 1.2rem;
+        }
+        .letter-church {
+          font-size: 0.75rem;
+        }
+        .letter-guest {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-inner {
+          animation: reveal 1.2s ease both;
+        }
+        .scroll-link span {
+          animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes reveal {
+          from {
+            opacity: 0;
+            transform: translateY(16px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(5px);
+          }
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .button {
+          transition: none;
+        }
+        .envelope-flap {
+          transition-duration: 0.01s;
+        }
+        .envelope-letter {
+          transition-duration: 0.01s;
+        }
+        .page {
+          transition-duration: 0.01s;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="locked">
+    <!-- ==================== ENVELOPE OVERLAY ==================== -->
+    <div
+      class="envelope-cover"
+      id="envelopeCover"
+      aria-label="Open your invitation"
+    >
+      <div
+        class="envelope"
+        id="envelope"
+        role="button"
+        tabindex="0"
+        aria-label="Tap the seal to open your invitation"
+      >
+        <!-- Envelope body -->
+        <div class="envelope-body"></div>
+
+        <!-- Letter inside -->
+        <div class="envelope-letter">
+          <div class="letter-cac">CAC</div>
+          <div class="letter-church">Christ Apostolic Church</div>
+          <div class="letter-line"></div>
+          <div class="letter-you">Specially for</div>
+          <div class="letter-guest" id="letterGuest">Beloved</div>
+          <div class="letter-invited">You are specially invited</div>
+        </div>
+
+        <!-- Top flap -->
+        <div class="envelope-flap">
+          <div class="envelope-flap-inner"></div>
+        </div>
+
+        <!-- Wax seal -->
+        <button
+          class="wax-seal"
+          id="waxSeal"
+          aria-label="Break the seal to open invitation"
+        >
+          <span class="wax-seal-text">CAC</span>
+        </button>
+
+        <!-- Label beneath -->
+        <div class="envelope-label">
+          You have received an invitation
+          <span class="tap-text">Tap the seal to open</span>
+        </div>
+      </div>
+
+      <!-- Particles container -->
+      <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- ==================== MAIN PAGE ==================== -->
+    <div class="page" id="mainPage">
+      <header class="hero">
+        <svg
+          class="branch branch-left"
+          viewBox="0 0 180 400"
+          fill="none"
+          aria-hidden="true"
+        >
+          <g stroke="currentColor" stroke-width="1.2">
+            <path d="M18 395C70 320 105 205 112 15" />
+            <path d="M96 245C54 229 32 197 28 157C68 168 94 199 96 245Z" />
+            <path
+              d="M105 177C139 153 153 122 149 87C117 105 102 136 105 177Z"
+            />
+            <path d="M73 310C41 303 16 282 5 250C39 251 65 274 73 310Z" />
+            <path d="M110 107C82 88 69 61 72 32C99 46 113 74 110 107Z" />
+            <path d="M49 348C82 333 101 309 107 279" />
+          </g>
+        </svg>
+
+        <svg
+          class="branch branch-right"
+          viewBox="0 0 180 400"
+          fill="none"
+          aria-hidden="true"
+        >
+          <g stroke="currentColor" stroke-width="1.2">
+            <path d="M18 395C70 320 105 205 112 15" />
+            <path d="M96 245C54 229 32 197 28 157C68 168 94 199 96 245Z" />
+            <path
+              d="M105 177C139 153 153 122 149 87C117 105 102 136 105 177Z"
+            />
+            <path d="M73 310C41 303 16 282 5 250C39 251 65 274 73 310Z" />
+            <path d="M110 107C82 88 69 61 72 32C99 46 113 74 110 107Z" />
+            <path d="M49 348C82 333 101 309 107 279" />
+          </g>
+        </svg>
+
+        <div class="hero-inner">
+          <div class="seal-badge" aria-label="CAC">
+            <span>CAC</span>
+            <small>✦</small>
+          </div>
+
+          <p class="church-name">Christ Apostolic Church</p>
+          <p class="district">Itedo Yiyanju District Headquarters</p>
+
+          <div class="gold-rule" aria-hidden="true">
+            <span></span>✦<span></span>
+          </div>
+
+          <p class="kicker">With joy and thanksgiving to God</p>
+
+          <h1>
+            <span class="title-small">A Historic</span>
+            <span class="title-script">3-in-1</span>
+            <span class="title-main">Celebration Service</span>
+          </h1>
+
+          <p class="intro">
+            We are overflowing with joy and gratitude to God, and we would love
+            for you to celebrate with us! Join us for a historic three in one
+            Celebration Service. Come share in the fellowship, the worship, and
+            the milestone. Your presence will make the day complete.
+          </p>
+
+          <div class="guest">
+            <span>Specially for</span>
+            <strong id="guestName">Beloved</strong>
+          </div>
+
+          <p class="hero-date">
+            Sunday, 22nd November 2026 <i>•</i> 10:00 AM prompt
+          </p>
+
+          <a class="scroll-link" href="#celebration">
+            Discover the celebration
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <section class="theme-banner" aria-label="Event theme">
+          <p class="eyebrow">The Theme</p>
+          <h2>Revival of the Dry Bones</h2>
+        </section>
+
+        <section class="section celebrations" id="celebration">
+          <div class="section-heading">
+            <p class="eyebrow">The Programme</p>
+            <h2>One service.<br />Three glorious celebrations.</h2>
+            <p>
+              Join us as we thank God for His faithfulness and celebrate a new
+              chapter.
+            </p>
+          </div>
+
+          <div class="programme">
+            <article class="programme-item">
+              <div class="programme-number">01</div>
+              <div>
+                <h3>The Inauguration</h3>
+                <p>CAC Itedo Yiyanju District Headquarters</p>
+              </div>
+            </article>
+
+            <article class="programme-item">
+              <div class="programme-number">02</div>
+              <div>
+                <h3>The Induction</h3>
+                <p>Prophet Akin-Olugbade Samson as District Superintendent</p>
+              </div>
+            </article>
+
+            <article class="programme-item">
+              <div class="programme-number">03</div>
+              <div>
+                <h3>Anniversary Thanksgiving</h3>
+                <p>BETHEL 2026 Anniversary Thanksgiving</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section details" aria-labelledby="details-title">
+          <div class="section-heading">
+            <p class="eyebrow">Save the Date</p>
+            <h2 id="details-title">The Details</h2>
+          </div>
+
+          <div class="details-grid">
+            <article class="detail-card">
+              <div class="detail-icon" aria-hidden="true">✦</div>
+              <p class="eyebrow">Sunday</p>
+              <div class="large-date">22</div>
+              <h3>November 2026</h3>
+              <p class="time">10:00 AM prompt</p>
+            </article>
+
+            <article class="detail-card">
+              <div class="detail-icon" aria-hidden="true">⌖</div>
+              <p class="eyebrow">The Venue</p>
+              <h3>CAC Itedo Yiyanju<br />District Headquarters</h3>
+              <p class="time">Alagbado, Lagos</p>
+              <p>We look forward to receiving you.</p>
+
+              <a
+                class="button"
+                href="https://share.google/xYgjTU7p7roIydpQY"
+                target="_blank"
+                rel="noopener"
+              >
+                Open in Google Maps <span aria-hidden="true">↗</span>
+              </a>
+            </article>
+          </div>
+        </section>
+
+        <section class="countdown-section" aria-labelledby="countdown-title">
+          <p class="eyebrow">Anticipating a Glorious Day</p>
+          <h2 id="countdown-title">Counting down to the celebration</h2>
+
+          <div
+            class="countdown"
+            role="timer"
+            aria-label="Countdown to the celebration service"
+          >
+            <div class="countdown-unit">
+              <strong id="days">--</strong>
+              <span>Days</span>
+            </div>
+            <div class="countdown-unit">
+              <strong id="hours">--</strong>
+              <span>Hours</span>
+            </div>
+            <div class="countdown-unit">
+              <strong id="minutes">--</strong>
+              <span>Minutes</span>
+            </div>
+            <div class="countdown-unit">
+              <strong id="seconds">--</strong>
+              <span>Seconds</span>
+            </div>
+          </div>
+
+          <p class="countdown-note" id="countdownNote">
+            Sunday, 22nd November 2026 at 10:00 AM
+          </p>
+        </section>
+
+        <section class="closing">
+          <div class="closing-inner">
+            <div class="closing-flourish" aria-hidden="true">C</div>
+            <p class="eyebrow">You Are Specially Invited</p>
+            <h2>
+              Come celebrate with us,<br /><span id="closingName"
+                >Beloved.</span
+              >
+            </h2>
+            <p>
+              With joyful hearts, we look forward to sharing this historic and
+              memorable celebration with you.
+            </p>
+
+            <a
+              class="button"
+              id="rsvpButton"
+              href="#"
+              target="_blank"
+              rel="noopener"
+            >
+              Confirm by WhatsApp <span aria-hidden="true">↗</span>
+            </a>
+            <small class="rsvp-note">Kindly confirm your attendance</small>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <strong>Christ Apostolic Church</strong>
+        Itedo Yiyanju District Headquarters · Alagbado, Lagos
+      </footer>
+    </div>
+
+    <script>
+      /* ========= Guest name personalisation ========= */
+      const params = new URLSearchParams(window.location.search);
+      const supplied = (params.get("to") || "").trim().slice(0, 60);
+      const guestName = supplied || "Beloved";
+
+      document.getElementById("guestName").textContent = guestName;
+      document.getElementById("closingName").textContent = guestName + ".";
+      document.getElementById("letterGuest").textContent = guestName;
+
+      /* ========= Envelope interaction ========= */
+      const envelopeCover = document.getElementById("envelopeCover");
+      const envelope = document.getElementById("envelope");
+      const mainPage = document.getElementById("mainPage");
+      const particlesBox = document.getElementById("particles");
+      let hasOpened = false;
+
+      function spawnParticles() {
+        const count = 35;
+        for (let i = 0; i < count; i++) {
+          const p = document.createElement("div");
+          p.className = "particle";
+          const x = 40 + Math.random() * 20; // centred horizontally
+          const y = 35 + Math.random() * 20; // near the seal area
+          const dx = (Math.random() - 0.5) * 280;
+          const dy = -120 - Math.random() * 250;
+          const size = 4 + Math.random() * 5;
+          const dur = 0.6 + Math.random() * 0.8;
+          const del = Math.random() * 0.25;
+          const hue = Math.random() > 0.5 ? "var(--gold)" : "var(--gold-light)";
+
+          p.style.cssText = `
+          left: ${x}%;
+          top: ${y}%;
+          width: ${size}px;
+          height: ${size}px;
+          background: ${hue};
+          animation: particleFly ${dur}s ease-out ${del}s forwards;
+        `;
+
+          // Inject keyframes with random destinations
+          const name = `particleFly`;
+          if (!document.getElementById("particleKF")) {
+            const style = document.createElement("style");
+            style.id = "particleKF";
+            style.textContent = `
+            @keyframes particleFly {
+              0%   { opacity: 1; transform: translate(0, 0) scale(1); }
+              100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.3); }
+            }
+          `;
+            document.head.appendChild(style);
+          }
+
+          p.style.setProperty("--dx", dx + "px");
+          p.style.setProperty("--dy", dy + "px");
+
+          particlesBox.appendChild(p);
+        }
+      }
+
+      function openEnvelope() {
+        if (hasOpened) return;
+        hasOpened = true;
+
+        // 1. Break seal & open flap
+        envelope.classList.add("flap-open");
+        spawnParticles();
+
+        // 2. After letter slides up, fade out the overlay & reveal page
+        setTimeout(() => {
+          envelopeCover.classList.add("opened");
+          mainPage.classList.add("revealed");
+          document.body.classList.remove("locked");
+        }, 1800);
+
+        // 3. Remove overlay from DOM after transition
+        setTimeout(() => {
+          envelopeCover.remove();
+          particlesBox.remove();
+        }, 2600);
+      }
+
+      envelope.addEventListener("click", openEnvelope);
+      envelope.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openEnvelope();
+        }
+      });
+
+      /* ========= Countdown ========= */
+      const eventTime = new Date("2026-11-22T10:00:00+01:00").getTime();
+
+      const dEl = document.getElementById("days");
+      const hEl = document.getElementById("hours");
+      const mEl = document.getElementById("minutes");
+      const sEl = document.getElementById("seconds");
+      const cTitle = document.getElementById("countdown-title");
+      const cNote = document.getElementById("countdownNote");
+
+      function pad(n) {
+        return String(n).padStart(2, "0");
+      }
+
+      function tick() {
+        const dist = eventTime - Date.now();
+        if (dist <= 0) {
+          dEl.textContent = "00";
+          hEl.textContent = "00";
+          mEl.textContent = "00";
+          sEl.textContent = "00";
+          cTitle.textContent = "Our celebration is here";
+          cNote.textContent = "To God be the glory for a historic celebration.";
+          clearInterval(timer);
+          return;
+        }
+        dEl.textContent = String(Math.floor(dist / 864e5));
+        hEl.textContent = pad(Math.floor((dist % 864e5) / 36e5));
+        mEl.textContent = pad(Math.floor((dist % 36e5) / 6e4));
+        sEl.textContent = pad(Math.floor((dist % 6e4) / 1e3));
+      }
+
+      const timer = setInterval(tick, 1000);
+      tick();
+
+      /* ========= WhatsApp RSVP ========= */
+      const whatsappNumber = "2340000000000"; // ← REPLACE with real number
+      const msg = supplied
+        ? `Hello, my name is ${guestName}. I am delighted to confirm my attendance at the CAC Itedo Yiyanju Historic 3-in-1 Celebration Service on Sunday, 22nd November 2026.`
+        : "Hello, I am delighted to confirm my attendance at the CAC Itedo Yiyanju Historic 3-in-1 Celebration Service on Sunday, 22nd November 2026.";
+
+      document.getElementById("rsvpButton").href =
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
     </script>
   </body>
 </html>
